@@ -130,15 +130,12 @@ public class Conjunto<T> implements ILista<T> , IConjunto<T>{
     @Override
     public IConjunto<T> interseccion(IConjunto<T> otroConjunto) {
         Nodo<T> actual = primero;
-        Nodo<T> otroConjuntoNodo = otroConjunto.GetPrimero();
-
         IConjunto<T> conjuntoFinal = new Conjunto<>();
-        while(actual != null && otroConjuntoNodo != null) {
-                if(actual.getEtiqueta().compareTo(otroConjuntoNodo.getEtiqueta()) == 0) {
-                        conjuntoFinal.insertar(actual.getDato(), actual.getEtiqueta());
-                }
+        while (actual != null) {
+            if (otroConjunto.buscar(actual.getEtiqueta()) != null) {
+                conjuntoFinal.insertar(actual.getDato(), actual.getEtiqueta());
+            }
             actual = actual.getSiguiente();
-            otroConjuntoNodo = otroConjuntoNodo.getSiguiente();
         }
         return conjuntoFinal;
     }
